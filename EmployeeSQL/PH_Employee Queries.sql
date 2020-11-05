@@ -10,11 +10,12 @@ SELECT employees.emp_no AS Employee_ID
 	,employees.sex AS Employee_Sex
 	,salaries.salary AS Employee_Salary
 FROM employees
-INNER JOIN salaries
-ON employees.emp_no = salaries.emp_no;
+INNER JOIN salaries ON employees.emp_no = salaries.emp_no;
 
 --list FN, LN, hire date for employees hired in 1986
-SELECT first_name, last_name, hire_date 
+SELECT first_name
+	,last_name
+	,hire_date 
 FROM employees 
 WHERE DATE_PART('YEAR', hire_date) = 1986;
 
@@ -43,7 +44,7 @@ SELECT first_name AS Employee_First_Name
 	,sex AS Employee_Sex
 FROM employees
 	WHERE first_name = 'Hercules'
-	AND last_name LIKE 'B%'
+		AND last_name LIKE 'B%'
 	
 --list all employees in the Sales dept, listing: employee #, LN, FN, dept name
 SELECT emp.emp_no AS Employee_ID
@@ -54,3 +55,14 @@ FROM employees AS emp
 INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no
 INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
 	WHERE dept.dept_name = 'Sales';
+	
+--list all employees in the Sales and Development depts, listing: employee #, LN, FN, dept name
+SELECT emp.emp_no AS Employee_ID
+	,emp.last_name AS Employee_Last_Name
+	,emp.first_name AS Employee_First_Name
+	,dept.dept_name AS Department_Name
+FROM employees AS emp
+INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no
+INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
+	WHERE dept.dept_name = 'Sales'
+		OR dept.dept_name = 'Development';

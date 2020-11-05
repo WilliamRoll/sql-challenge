@@ -45,4 +45,12 @@ FROM employees
 	WHERE first_name = 'Hercules'
 	AND last_name LIKE 'B%'
 	
---
+--list all employees in the Sales dept, listing: employee #, LN, FN, dept name
+SELECT emp.emp_no AS Employee_ID
+	,emp.last_name AS Employee_Last_Name
+	,emp.first_name AS Employee_First_Name
+	,dept.dept_name AS Department_Name
+FROM employees AS emp
+INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no
+INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
+	WHERE dept.dept_name = 'Sales';

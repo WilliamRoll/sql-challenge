@@ -11,7 +11,7 @@ SELECT employees.emp_no AS Employee_ID
 	,salaries.salary AS Employee_Salary
 FROM employees
 INNER JOIN salaries
-ON employees.emp_no = salaries.emp_no
+ON employees.emp_no = salaries.emp_no;
 
 --list FN, LN, hire date for employees hired in 1986
 SELECT first_name, last_name, hire_date 
@@ -26,5 +26,15 @@ SELECT dm.dept_no AS Department_ID
 	,emp.first_name AS Manager_First_Name
 FROM dept_manager AS dm
 INNER JOIN departments AS dept ON dept.dept_no = dm.dept_no
-INNER JOIN employees AS emp ON emp.emp_no = dm.emp_no
+INNER JOIN employees AS emp ON emp.emp_no = dm.emp_no;
 
+--department of each employee w/ the following info: emp #, LN, FN, dept name
+SELECT emp.emp_no AS Employee_ID
+	,emp.last_name AS Employee_Last_Name
+	,emp.first_name AS Employee_First_Name
+	,dept.dept_name AS Department_Name
+FROM employees AS emp
+INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no 
+INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
+
+--

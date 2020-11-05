@@ -37,4 +37,12 @@ FROM employees AS emp
 INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no 
 INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
 
+--for employees w/ FN "Hercules" and LN begins w/ "B" list: FN, LN, Sex
+SELECT first_name AS Employee_First_Name
+	,last_name AS Employee_Last_Name
+	,sex AS Employee_Sex
+FROM employees
+	WHERE first_name = 'Hercules'
+	AND last_name LIKE 'B%'
+	
 --

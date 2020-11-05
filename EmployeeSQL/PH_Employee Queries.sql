@@ -1,8 +1,11 @@
-SELECT * FROM employees
-SELECT * FROM salaries
-SELECT * FROM dept_manager
+--tables
 SELECT * FROM departments
 SELECT * FROM dept_emp
+SELECT * FROM dept_manager
+SELECT * FROM employees
+SELECT * FROM salaries
+SELECT * FROM titles
+
 --list employee #, LN, FN, Sex, Salary for each employee
 SELECT employees.emp_no AS Employee_ID
 	,employees.first_name AS Employee_First_Name
@@ -36,7 +39,7 @@ SELECT emp.emp_no AS Employee_ID
 	,dept.dept_name AS Department_Name
 FROM employees AS emp
 INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no 
-INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
+INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no;
 
 --for employees w/ FN "Hercules" and LN begins w/ "B" list: FN, LN, Sex
 SELECT first_name AS Employee_First_Name
@@ -44,7 +47,7 @@ SELECT first_name AS Employee_First_Name
 	,sex AS Employee_Sex
 FROM employees
 	WHERE first_name = 'Hercules'
-		AND last_name LIKE 'B%'
+		AND last_name LIKE 'B%';
 	
 --list all employees in the Sales dept, listing: employee #, LN, FN, dept name
 SELECT emp.emp_no AS Employee_ID

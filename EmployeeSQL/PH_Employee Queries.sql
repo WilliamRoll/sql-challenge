@@ -13,11 +13,11 @@ FROM employees
 INNER JOIN salaries ON employees.emp_no = salaries.emp_no;
 
 --list FN, LN, hire date for employees hired in 1986
-SELECT first_name
-	,last_name
-	,hire_date 
+SELECT first_name AS Employee_First_Name
+	,last_name AS Employee_Last_Name
+	,hire_date AS Hire_Date
 FROM employees 
-WHERE DATE_PART('YEAR', hire_date) = 1986;
+	WHERE DATE_PART('YEAR', hire_date) = 1986;
 
 --list manager of each dept w/ the following info: dept #, dept name, manager's  employee #, LN, FN
 SELECT dm.dept_no AS Department_ID
@@ -66,3 +66,15 @@ INNER JOIN dept_emp ON dept_emp.emp_no = emp.emp_no
 INNER JOIN departments AS dept ON dept.dept_no = dept_emp.dept_no
 	WHERE dept.dept_name = 'Sales'
 		OR dept.dept_name = 'Development';
+
+--list the freq count of employee LN (descending order)
+SELECT last_name AS Employee_Last_Name
+	,COUNT(last_name) AS Last_Name_Count
+FROM employees
+	GROUP BY last_name
+	ORDER BY Last_Name_Count DESC;
+	
+	
+	
+	
+	
